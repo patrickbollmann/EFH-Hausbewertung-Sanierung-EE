@@ -222,20 +222,6 @@ LibreOffice bricht `recalc.py` mit einer klaren Fehlermeldung ab; Abhilfe ist da
 die generierte Datei einmal manuell in Excel oder LibreOffice zu öffnen und zu
 speichern – das berechnet alle Formeln ebenfalls einmalig durch.
 
-### Checkliste auf `10_<ID>` nicht sichtbar / lässt sich nicht herunterscrollen?
-
-Das war ein bekannter, mittlerweile behobener Bug: `build_workbook.py` fror
-versehentlich den kompletten Objektstammdaten-Block ein, wodurch für die
-Sanierungs-Checkliste darunter kein sichtbarer Platz mehr blieb (siehe
-`AGENTS.md`, Abschnitt "Behobener Bug: Fensterfixierung machte die Checkliste
-auf `10_<ID>` unsichtbar"). Neu angelegte Objekte (per Skript oder manuellem
-Kopieren aus einer aktuell gebauten Datei) haben dieses Problem nicht mehr. Bei
-einer älteren Datei mit betroffenen Objekten: pro `10_*`-Blatt in Excel
-`Ansicht → Fenster fixieren → Fixierung aufheben`, Cursor auf Zelle `C2`,
-dann erneut `Fenster fixieren`.
-
-Details, Stolpersteine und Konventionen für Weiterentwicklung: siehe `AGENTS.md`.
-
 ## Bekannte Einschränkungen (bewusste Design-Entscheidungen)
 
 - **Kein Blattschutz.** Damit "Blattgruppe kopieren" beim Anlegen neuer Objekte nicht
