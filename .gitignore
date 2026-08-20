@@ -1,0 +1,35 @@
+# Ergebnis-Arbeitsmappe(n) - werden von build/build_workbook.py bzw.
+# build/add_object.py generiert und enthalten private Kaufobjekt-, Finanzierungs-
+# und Sanierungsdaten. Gehören nicht ins Git; siehe README.md "Arbeitsmappe neu
+# bauen" für den Befehl, der die Datei lokal neu erzeugt.
+*.xlsx
+*.xls
+
+# Ausnahme: die Demo-Datei mit zwei fiktiven Beispielobjekten (siehe
+# build/build_demo.py) - die DARF ins Repo, sie enthält keine echten Objektdaten.
+!/demo/Hausbewertung_DEMO.xlsx
+
+# Backups, die add_object.py vor jedem Schreibzugriff anlegt
+# (<Datei>.bak-<Zeitstempel>)
+*.bak-*
+
+# Temporäre JSON-Datendateien, die build_demo.py beim Bauen der Demo-Datei
+# anlegt und normalerweise selbst wieder aufräumt (Sicherheitsnetz)
+build/tmp*.json
+
+# Ursprünglicher Rechercheplan (Rohfassung mit Recherchenotizen) - bleibt lokal,
+# die aufbereiteten Inhalte (Design-Entscheidungen, Quellen) stehen in AGENTS.md,
+# README.md und im Blatt 90_Quellen der Excel-Datei.
+docs/Bauplan_Hausbewertung_Excel.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Editor/OS
+.DS_Store
+.vscode/
+.idea/
