@@ -148,7 +148,7 @@ können auch alle Stammdaten + Sanierungs-Checkliste auf einmal aus einer JSON-D
 kommen (`--data <datei>.json`) – siehe Variante C. Restliche Objektdaten danach auf
 `10_<ID>` von Hand ausfüllen.
 
-### Variante B: manuell (funktioniert weiterhin, z. B. ohne Python)
+### Variante B: manuell (z. B. ohne Python)
 
 Die Kurzfassung steht auch auf dem Blatt `00_Anleitung` in der Datei selbst:
 
@@ -179,21 +179,6 @@ Ein Exposé liefert selten alle Felder – nicht befüllte Werte bleiben bewusst
 Default aus `10_VORLAGE` stehen, statt geraten zu werden. Die KI meldet am Ende, was
 automatisch gesetzt wurde und was noch von Hand zu ergänzen ist (v. a.
 Bodenrichtwert, Energieausweis-Wert und die Sanierungs-Checkliste).
-
-### Wie Mehrfach-Objekte funktionieren (wichtige Design-Entscheidung)
-
-Der ursprüngliche Rechercheplan (`docs/Bauplan_Hausbewertung_Excel.md`, Abschnitt
-13.1 – nicht Teil dieses Repos, siehe oben) sah eine Power-Query-Aggregation über
-`KPI_<ID>`-Tabellen für
-`20_Dashboard` vor. Das Modell wird aber ausschließlich mit `openpyxl` gebaut, das
-keine echten Power-Query-Datenverbindungen erzeugen kann. Stattdessen ziehen
-`00_Objektindex` und
-`20_Dashboard` alle Werte per `INDIRECT()`-Formel aus den Blättern `10_<ID>` bis
-`16_<ID>`, gesteuert über die Objekt-ID-Spalte auf `00_Objektindex`. Vorteil: kein
-Makro, kein "Alle aktualisieren" nötig, funktioniert in Excel und LibreOffice
-gleichermaßen. Nachteil: die Objekt-ID muss exakt mit dem Blattnamen-Suffix
-übereinstimmen (Groß-/Kleinschreibung zählt) – bei Tippfehlern erscheint `#REF`
-statt eines Werts.
 
 ## Arbeitsmappe neu bauen
 
