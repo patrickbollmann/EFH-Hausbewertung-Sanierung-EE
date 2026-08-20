@@ -17,7 +17,7 @@ from openpyxl.worksheet.table import Table, TableStyleInfo
 from catalog_data import CATALOG
 
 OUT = os.environ.get("HAUSMODELL_OUTPUT") or os.path.join(
-    os.path.dirname(__file__), "..", "Hausbewertung_Altkreis_Luebbecke.xlsx")
+    os.path.dirname(__file__), "..", "Hausbewertung_NRW.xlsx")
 
 wb = Workbook()
 wb.remove(wb.active)
@@ -119,7 +119,7 @@ def autofit(ws, widths):
 # 00_Anleitung
 # =====================================================================================
 ws = wb.create_sheet("00_Anleitung")
-set_title(ws, "Anleitung — Excel-Modell Hausbewertung Altkreis Lübbecke")
+set_title(ws, "Anleitung — Excel-Modell Hausbewertung NRW")
 ws["B3"] = "Farblegende"
 ws["B3"].font = FONT_SECTION
 legend = [

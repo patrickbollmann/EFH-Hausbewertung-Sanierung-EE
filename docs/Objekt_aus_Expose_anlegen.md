@@ -2,7 +2,7 @@
 
 Diese Datei richtet sich an eine KI (z. B. Claude), der/die in einem Chat ein
 Immobilien-Exposé (PDF, Bild oder Text) hochgeladen bekommt und daraus automatisch
-ein neues Objekt in `Hausbewertung_Altkreis_Luebbecke.xlsx` anlegen soll. Sie ist aus
+ein neues Objekt in `Hausbewertung_NRW.xlsx` anlegen soll. Sie ist aus
 `AGENTS.md` verlinkt und ergänzt dessen Abschnitt "`add_object.py` — wie das
 automatische Anlegen funktioniert" um die Exposé-spezifischen Schritte.
 

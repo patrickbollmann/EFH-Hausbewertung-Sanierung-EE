@@ -1,5 +1,5 @@
 """
-add_object.py — Neues Objekt (Haus) automatisch in Hausbewertung_Altkreis_Luebbecke.xlsx anlegen.
+add_object.py — Neues Objekt (Haus) automatisch in Hausbewertung_NRW.xlsx anlegen.
 
 Ersetzt den manuellen "Blattgruppe kopieren + umbenennen"-Schritt aus 00_Anleitung
 durch ein Skript. Das manuelle Vorgehen funktioniert weiterhin unverändert (siehe
@@ -28,7 +28,7 @@ Nutzung:
       --baujahr 1985 --kaufpreis 265000 --wohnflaeche 145 \
       --grundstuecksflaeche 600 --bodenrichtwert 95
 
-  python3 add_object.py Rahden1 --file /pfad/zu/Hausbewertung_Altkreis_Luebbecke.xlsx
+  python3 add_object.py Rahden1 --file /pfad/zu/Hausbewertung_NRW.xlsx
 
   # Alle Stammdaten + Checklisten-Overrides aus einer JSON-Datei (z.B. von einer KI aus
   # einem Exposé extrahiert, siehe docs/Objekt_aus_Expose_anlegen.md):
@@ -524,7 +524,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("objekt_id", help="Kurze Objekt-ID ohne Sonderzeichen, z.B. Rahden1")
     parser.add_argument("--file", default=None,
-                         help="Pfad zur Excel-Datei (Default: ../Hausbewertung_Altkreis_Luebbecke.xlsx "
+                         help="Pfad zur Excel-Datei (Default: ../Hausbewertung_NRW.xlsx "
                               "relativ zu diesem Skript)")
     parser.add_argument("--no-backup", action="store_true", help="Kein Backup vor dem Überschreiben anlegen")
     parser.add_argument("--no-recalc", action="store_true", help="LibreOffice-Neuberechnung überspringen")
@@ -537,7 +537,7 @@ def main():
         parser.add_argument(f"--{arg_name}", default=None, help=f"Startwert für '{FIELD_LABELS[arg_name]}'")
     args = parser.parse_args()
 
-    default_path = os.path.join(os.path.dirname(__file__), "..", "Hausbewertung_Altkreis_Luebbecke.xlsx")
+    default_path = os.path.join(os.path.dirname(__file__), "..", "Hausbewertung_NRW.xlsx")
     path = os.path.abspath(args.file or default_path)
     if not os.path.exists(path):
         fail(f"Datei nicht gefunden: {path}")

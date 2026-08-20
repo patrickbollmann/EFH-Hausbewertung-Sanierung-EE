@@ -1,6 +1,6 @@
 # AGENTS.md — Leitfaden für die Weiterentwicklung
 
-Dieses Repo generiert ein Excel-Finanzmodell (`Hausbewertung_Altkreis_Luebbecke.xlsx`)
+Dieses Repo generiert ein Excel-Finanzmodell (`Hausbewertung_NRW.xlsx`)
 per Python/`openpyxl` aus `build/build_workbook.py`. Diese Datei ist der Leitfaden für
 jede KI-Agentin/jeden Agenten (oder Mensch), der/die daran weiterarbeitet.
 
@@ -18,7 +18,7 @@ Muster fast garantiert.
 ```bash
 cd build
 python3 build_workbook.py                                    # 1. neu bauen
-python3 recalc.py ../Hausbewertung_Altkreis_Luebbecke.xlsx 150   # 2. neu berechnen
+python3 recalc.py ../Hausbewertung_NRW.xlsx 150                  # 2. neu berechnen
 ```
 
 `build/recalc.py` ist ein eigenständiges, im Repo mitgeliefertes Skript (kein
@@ -260,7 +260,7 @@ Demo-Datei).
 
 Technisch relevant, falls du `build_workbook.py` änderst: der Ausgabepfad wird über
 die Umgebungsvariable `HAUSMODELL_OUTPUT` überschrieben (Default bleibt
-`../Hausbewertung_Altkreis_Luebbecke.xlsx`, wenn die Variable nicht gesetzt ist) —
+`../Hausbewertung_NRW.xlsx`, wenn die Variable nicht gesetzt ist) —
 `build_demo.py` nutzt das, um in `demo/` statt ins Wurzelverzeichnis zu schreiben,
 ohne die echte Datei des Nutzers anzufassen. Änderst du `OUT` in `build_workbook.py`
 grundlegend (z. B. auf ein CLI-Argument statt `os.environ`), muss `build_demo.py`

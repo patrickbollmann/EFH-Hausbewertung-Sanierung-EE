@@ -1,9 +1,11 @@
-# Hausbewertung Altkreis Lübbecke
+# Hausbewertung NRW
 
 Excel-Modell zur Bewertung gebrauchter Einfamilienhäuser vor dem Kauf, mit Fokus auf
 Sanierung zu einem sehr energieeffizienten / möglichst klimaneutralen Standard
-(Effizienzhaus 55 EE / 40 EE). Zielregion: Altkreis Lübbecke (PLZ 32312, 32609 u.a. –
-Lübbecke, Espelkamp, Rahden, Preußisch Oldendorf, Stemwede, Hüllhorst), NRW.
+(Effizienzhaus 55 EE / 40 EE). Ausgelegt auf Objekte in Nordrhein-Westfalen (Annahmen
+wie Grunderwerbsteuer 6,5 % und Regionalfaktor sind NRW-weit gültig; die mitgelieferten
+Beispielobjekte liegen in Lübbecke und Rahden, lassen sich aber für jeden NRW-Standort
+anpassen).
 
 Das Modell hat zwei Ebenen, die bewusst unterschiedlich gepflegt werden:
 
@@ -54,7 +56,7 @@ ist zum Editieren gedacht.
 ## Inhalt des Repos
 
 ```
-Hausbewertung_Altkreis_Luebbecke.xlsx   # generierte Excel-Datei (Build-Artefakt, NICHT in Git)
+Hausbewertung_NRW.xlsx                  # generierte Excel-Datei (Build-Artefakt, NICHT in Git)
 README.md                               # diese Datei
 AGENTS.md                               # Leitfaden für KI-Agenten / Entwickler:innen
 LICENSE                                 # MIT-Lizenz
@@ -139,7 +141,7 @@ python3 add_object.py Rahden1 --adresse "Bahnhofstr. 12" --plz 32369 --ort Rahde
 ```
 
 Vor dem Speichern wird automatisch ein Backup der Datei angelegt
-(`Hausbewertung_Altkreis_Luebbecke.xlsx.bak-<Zeitstempel>`), danach läuft standardmäßig
+(`Hausbewertung_NRW.xlsx.bak-<Zeitstempel>`), danach läuft standardmäßig
 die LibreOffice-Neuberechnung (`--no-recalc` überspringt das, `--no-backup` das Backup).
 `python3 add_object.py --help` zeigt alle Optionen. Statt einzelner `--<feld>`-Flags
 können auch alle Stammdaten + Sanierungs-Checkliste auf einmal aus einer JSON-Datei
@@ -200,13 +202,13 @@ cd build
 python3 build_workbook.py
 ```
 
-Das Skript schreibt `../Hausbewertung_Altkreis_Luebbecke.xlsx` neu. `openpyxl` schreibt
+Das Skript schreibt `../Hausbewertung_NRW.xlsx` neu. `openpyxl` schreibt
 Formeln nur als Text, ohne berechnete Werte – deshalb danach **immer** neu berechnen
 (ruft im Hintergrund eine lokale LibreOffice-Installation headless auf, siehe
 Voraussetzung unten):
 
 ```bash
-python3 recalc.py ../Hausbewertung_Altkreis_Luebbecke.xlsx 150
+python3 recalc.py ../Hausbewertung_NRW.xlsx 150
 ```
 
 Das Ergebnis muss `"status": "success"` und `"total_errors": 0` zeigen. Danach
@@ -221,6 +223,20 @@ automatisch mitaufruft):** eine lokale LibreOffice-Installation (`soffice` bzw.
 LibreOffice bricht `recalc.py` mit einer klaren Fehlermeldung ab; Abhilfe ist dann,
 die generierte Datei einmal manuell in Excel oder LibreOffice zu öffnen und zu
 speichern – das berechnet alle Formeln ebenfalls einmalig durch.
+
+### Checkliste auf `10_<ID>` nicht sichtbar / lässt sich nicht herunterscrollen?
+
+Das war ein bekannter, mittlerweile behobener Bug: `build_workbook.py` fror
+versehentlich den kompletten Objektstammdaten-Block ein, wodurch für die
+Sanierungs-Checkliste darunter kein sichtbarer Platz mehr blieb (siehe
+`AGENTS.md`, Abschnitt "Behobener Bug: Fensterfixierung machte die Checkliste
+auf `10_<ID>` unsichtbar"). Neu angelegte Objekte (per Skript oder manuellem
+Kopieren aus einer aktuell gebauten Datei) haben dieses Problem nicht mehr. Bei
+einer älteren Datei mit betroffenen Objekten: pro `10_*`-Blatt in Excel
+`Ansicht → Fenster fixieren → Fixierung aufheben`, Cursor auf Zelle `C2`,
+dann erneut `Fenster fixieren`.
+
+Details, Stolpersteine und Konventionen für Weiterentwicklung: siehe `AGENTS.md`.
 
 ## Bekannte Einschränkungen (bewusste Design-Entscheidungen)
 
